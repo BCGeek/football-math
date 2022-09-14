@@ -29,7 +29,7 @@ export default function Welcome(props) {
 
                 <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
                     <div className="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                        <img src="{{ Vite::asset('resources/images/MoundsViewFantasyFootball.png') }}"></img>
+                        <img src='/images/MoundsViewFantasyFootball.png'></img>
                     </div>
 
                     <div className="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
