@@ -26,7 +26,7 @@ export default function Teams(props) {
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">{props.league.name}: Teams</h2>
                 <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                 <form>
-                  <label className=" text-black font-bold py-2 px-4  mt-4" htmlFor="week">Week</label>
+                  <label className="text-black font-bold py-2 px-4  mt-4" htmlFor="week">Week</label>
                   <input className="ml-1 mr-2 w-12" type="text" id="week" value={week} onChange={handleWeekChange}/>
                 </form>
                 <Link href={"/dashboard/league/report?week="+week+"&league_id="+props.league.id} className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-full" >Generate Weekly Report</Link>
