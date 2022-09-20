@@ -97,15 +97,24 @@ class LeagueController extends Controller
             $p->position = $player->Position;
             $p->team = $player->Team;
 
-            if ($p->position === "K") {
-                $p->stats = StatsKickers::where('PlayerID', '=', $player->PlayerID)->where('week', $week)->first();
-            } else {
-                $p->stats = Stats::where('PlayerID', '=', $player->PlayerID)->where('week', $week)->orderBy('Position', 'ASC')->first();
-            }
+            $p->stats = Stats::where('PlayerID', '=', $player->PlayerID)->where('week', $week)->orderBy('Position', 'ASC')->first();
+            $p->scores = $this->computeScores($p);
             $players[] = $p;
         }
 
         return $players;
+    }
+
+    private function computeScores($player)
+    {
+        $scores = [];
+        $scores['PassingYards'] = round($player->PassingYards / 50);
+        $scores['RushingYards'] = round($player->RushingYards / 20);
+        $scores['ReceivingYards'] = round($player->ReceivingYards / 20);
+        $scores['PassingTouchdowns'] = $player->PassingTouchdowns * 6;
+        $scores['RushingTouchdowns'] = $player->RushingTouchdowns * 6;
+        $scores['ReceivingTouchdowns'] = $player->ReceivingTouchdowns * 6;
+        return $scores;
     }
 
     private function getKickerData($teamId, $week)
