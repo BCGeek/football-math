@@ -98,7 +98,7 @@ class LeagueController extends Controller
             $p->team = $player->Team;
 
             $p->stats = Stats::where('PlayerID', '=', $player->PlayerID)->where('week', $week)->orderBy('Position', 'ASC')->first();
-            $p->scores = $this->computeScores($p);
+            // $p->scores = $this->computeScores($p->stats);
             $players[] = $p;
         }
 

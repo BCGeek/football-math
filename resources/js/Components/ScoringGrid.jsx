@@ -31,20 +31,29 @@ const ScoringGrid = ({report}) => {
                       { wrs.map((data,idx) => (<ScoringRow key={idx} pos="WR" data={data}/>)) }
                       { tes.map((data,idx) => (<ScoringRow key={idx} pos="TE" data={data}/>)) }
                       <tr>
-                        <th className="px-2 py-2 border border-gray-400" colSpan="2">K</th>
+                        <th className="px-2 py-2 border border-gray-400" colSpan="3">K</th>
                         <th className="px-2 py-2 border border-gray-400" colSpan="2">Field Goals</th>
                         <th className="px-2 py-2 border border-gray-400" colSpan="2">Point After Touchdown (P.A.T)</th>
-                        <th className="px-2 py-2 border border-gray-400" colSpan="2">Total (Across)</th>
+                        <th className="px-2 py-2 border border-gray-400 bg-gray-100" colSpan="1"></th>
                       </tr>
                         { report.kickers.map((data,idx) => (<ScoringRowKickers key={idx} pos="K" data={data}/>)) }
                       <tr>
-                        <th className="px-4 py-2 border border-gray-400" colSpan="2">Team</th>
+                        <th className="px-4 py-2 border border-gray-400" colSpan="3">Team</th>
                         <th className="px-4 py-2 border border-gray-400" colSpan="2">Win</th>
                         <th className="px-4 py-2 border border-gray-400" colSpan="2">Tie</th>
-                        <th className="px-4 py-2 border border-gray-400" colSpan="2">Total (Across)</th>
+                        <th className="px-4 py-2 border border-gray-400 bg-gray-100" colSpan="1"></th>
                       </tr>
                       <tr>
-                        {/* { report.teams.map((data,idx) => (<ScoringRow key={idx} pos="team" data={data}/>)) } */}
+                        <td colSpan="3" className="px-2 py-1 border border-gray-400 bg-gray-100 font-bold">&nbsp;</td>
+                        <td colSpan="2" className="px-2 py-1 border border-gray-400 text-right"></td>
+                        <td colSpan="2" className="px-2 py-1 border border-gray-400 text-right "></td>
+                        <td colSpan="1" className="px-2 py-1 border border-gray-400 text-right "></td>
+                      </tr>
+                      <tr>
+                        <td colSpan="3" className="px-2 py-1 border border-gray-400 bg-gray-100 font-bold">&nbsp;</td>
+                        <td colSpan="2" className="px-2 py-1 border border-gray-400 text-right"></td>
+                        <td colSpan="2" className="px-2 py-1 border border-gray-400 text-right "></td>
+                        <td colSpan="1" className="px-2 py-1 border border-gray-400 text-right "></td>
                       </tr>
                       </tbody>
                   </table>
