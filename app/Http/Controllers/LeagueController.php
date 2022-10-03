@@ -78,7 +78,8 @@ class LeagueController extends Controller
 
         return Inertia::render('Dashboard/LeagueReport', [
             'reports' => $reports,
-            'league' => $league
+            'league' => $league,
+            'params' => $request
         ]);
 
 
@@ -98,7 +99,8 @@ class LeagueController extends Controller
             $p->team = $player->Team;
 
             $p->stats = Stats::where('PlayerID', '=', $player->PlayerID)->where('week', $week)->orderBy('Position', 'ASC')->first();
-            // $p->scores = $this->computeScores($p->stats);
+            $p->scores = $this->computeScores($p->stats);
+
             $players[] = $p;
         }
 
@@ -108,12 +110,21 @@ class LeagueController extends Controller
     private function computeScores($player)
     {
         $scores = [];
-        $scores['PassingYards'] = round($player->PassingYards / 50);
-        $scores['RushingYards'] = round($player->RushingYards / 20);
-        $scores['ReceivingYards'] = round($player->ReceivingYards / 20);
-        $scores['PassingTouchdowns'] = $player->PassingTouchdowns * 6;
-        $scores['RushingTouchdowns'] = $player->RushingTouchdowns * 6;
-        $scores['ReceivingTouchdowns'] = $player->ReceivingTouchdowns * 6;
+        $scores['PassingYards'] = 0;
+        $scores['RushingYards'] = 0;
+        $scores['ReceivingYards'] = 0;
+        $scores['PassingTouchdowns'] = 0;
+        $scores['RushingTouchdowns'] = 0;
+        $scores['ReceivingTouchdowns'] = 0;
+
+        if ($player) {
+            $scores['PassingYards'] = round($player->PassingYards / 50);
+            $scores['RushingYards'] = round($player->RushingYards / 20);
+            $scores['ReceivingYards'] = round($player->ReceivingYards / 20);
+            $scores['PassingTouchdowns'] = $player->PassingTouchdowns * 6;
+            $scores['RushingTouchdowns'] = $player->RushingTouchdowns * 6;
+            $scores['ReceivingTouchdowns'] = $player->ReceivingTouchdowns * 6;
+        }
         return $scores;
     }
 
@@ -132,8 +143,26 @@ class LeagueController extends Controller
 
             $p->stats = StatsKickers::where('PlayerID', '=', $kicker->PlayerID)->where('week', $week)->first();
             $kickers[] = $p;
+
+            $p->kickerScores = $this->computeKickerScores($p->stats);
+
         }
 
         return $kickers;
+    }
+
+    private function computeKickerScores($player) 
+    {
+        $scores = [];
+        $scores['FieldGoals'] = 0;
+        $scores['PAT'] = 0;
+
+        if ($player) {
+            $scores['FieldGoals'] = 3*$player->FieldGoalsMade;
+            $scores['PAT'] = $player->ExtraPointsMade;
+        }
+
+        return $scores;
+
     }
 }

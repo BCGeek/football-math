@@ -1,9 +1,7 @@
 import React from 'react'
-import ScoringRow from './ScoringRow';
-import ScoringRowKickers from './ScoringRowKickers';
 import ScoringRowWithScores from './ScoringRowWithScores';
 import ScoringRowKickersWithScores from './ScoringRowKickersWithScores';
-const ScoringGrid = ({report}) => {
+const ScoringGridWithScores = ({report}) => {
   console.log('report', report);
 
   const qbs = report.data.filter(player => player.position === 'QB');
@@ -27,17 +25,17 @@ const ScoringGrid = ({report}) => {
                     </tr>
                     </thead>
                     <tbody>
-                      { qbs.map((data,idx) => (<ScoringRow key={idx} pos="QB" data={data}/>)) }
-                      { rbs.map((data,idx) => (<ScoringRow key={idx} pos="RB" data={data}/>)) }
-                      { wrs.map((data,idx) => (<ScoringRow key={idx} pos="WR" data={data}/>)) }
-                      { tes.map((data,idx) => (<ScoringRow key={idx} pos="TE" data={data}/>)) }
+                      { qbs.map((data,idx) => (<ScoringRowWithScores key={idx} pos="QB" data={data}/>)) }
+                      { rbs.map((data,idx) => (<ScoringRowWithScores key={idx} pos="RB" data={data}/>)) }
+                      { wrs.map((data,idx) => (<ScoringRowWithScores key={idx} pos="WR" data={data}/>)) }
+                      { tes.map((data,idx) => (<ScoringRowWithScores key={idx} pos="TE" data={data}/>)) }
                       <tr>
                         <th className="px-2 py-2 border border-gray-400" colSpan="3">K</th>
                         <th className="px-2 py-2 border border-gray-400" colSpan="2">Field Goals</th>
                         <th className="px-2 py-2 border border-gray-400" colSpan="2">Point After Touchdown (P.A.T)</th>
                         <th className="px-2 py-2 border border-gray-400 bg-gray-100" colSpan="1"></th>
                       </tr>
-                        { report.kickers.map((data,idx) => (<ScoringRowKickers key={idx} pos="K" data={data}/>)) }
+                        { report.kickers.map((data,idx) => (<ScoringRowKickersWithScores key={idx} pos="K" data={data}/>)) }
                       <tr>
                         <th className="px-4 py-2 border border-gray-400" colSpan="3">Team</th>
                         <th className="px-4 py-2 border border-gray-400" colSpan="2">Win</th>
@@ -62,4 +60,4 @@ const ScoringGrid = ({report}) => {
   )
 }
 
-export default ScoringGrid;
+export default ScoringGridWithScores;

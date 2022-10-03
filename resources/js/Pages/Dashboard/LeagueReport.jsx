@@ -4,13 +4,16 @@ import { Head, Link } from '@inertiajs/inertia-react';
 import TeamAdd from '@/Components/TeamAdd';
 import TeamList from '@/Components/TeamList';
 import ScoringGrid from '@/Components/ScoringGrid';
+import ScoringGridWithScores from '@/Components/ScoringGridWithScores';
 
 export default function LeagueReport(props) {
     console.log('League Report props', props);
   const [page, setPage] = useState('');
+  const [showTotals, setShowTotals] = useState(false)
 
   useEffect(() => {
     setPage(props.action);
+    setShowTotals(props.params.show_totals === 'true' ? true: false)
   },[]);
 
     return (
@@ -33,7 +36,8 @@ export default function LeagueReport(props) {
                   <h2>Fantasy Football Math Weekly Scoring Grid </h2>
                   <h3>Team Name: {report.team}</h3>
                   <h3>NFL Week Number: {report.sub}</h3>
-                  <ScoringGrid report={report} />
+                  {!showTotals && <ScoringGrid report={report} />}
+                  {showTotals && <ScoringGridWithScores report={report} />}
                 </div>
 
               )})
