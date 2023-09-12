@@ -43,7 +43,6 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
 
     Route::get('nfl/{pos?}', [PlayersController::class, 'index'])->name('dashboard.nfl');
 
-    Route::get('divisions', [PlayersController::class, 'index'])->name('dashboard.divisions');
 });
 
 

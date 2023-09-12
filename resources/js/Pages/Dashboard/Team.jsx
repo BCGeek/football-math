@@ -43,9 +43,6 @@ export default function Team(props) {
         }))
     }, [kickerFilter]);
 
-    const handleChange = () => {}
-    const processing = false;
-    const submit = () => {}
     
     const selectPlayer = (e) => {
         e.preventDefault();
@@ -54,6 +51,8 @@ export default function Team(props) {
             team_id: props.team.id,
             player_id: parseInt(e.target.value)
         }
+
+        // don't post if already on list.
 
         Inertia.post('/dashboard/team/', values);
     }

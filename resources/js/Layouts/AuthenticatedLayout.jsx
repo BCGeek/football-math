@@ -30,10 +30,6 @@ export default function Authenticated({ auth, header, children }) {
                                 <NavLink href={route('dashboard.nfl')} active={route().current('dashboard.nfl')}>
                                     NFL
                                 </NavLink>
-                                <NavLink href={route('dashboard.divisions')} active={route().current('dashboard.divisions')}>
-                                    Commissioner
-                                </NavLink>
-
                             </div>
                         </div>
 
