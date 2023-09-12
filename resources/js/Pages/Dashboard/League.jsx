@@ -10,6 +10,8 @@ export default function Teams(props) {
   const [week, setWeek] = useState(1);
   const [showTotals, setShowTotals] = useState(false);
 
+  const league_id = props.league_id ? props.league_id : 1
+
   const handleWeekChange = (e) => {
     setWeek(e.target.value)
   }
@@ -36,7 +38,7 @@ export default function Teams(props) {
                   <label className="text-black font-bold py-2 px-4 mt-4">Show Totals</label>
                   <input type="checkbox" id="showTotals" value={showTotals} onChange={handleShowTotalsChange} checked={showTotals} className="ml-0 mr-4" />
                 </form>
-                <Link href={"/dashboard/league/report?week="+week+"&league_id="+props.league.id+"&show_totals="+showTotals} className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-full" >Generate Weekly Report</Link>
+                <Link href={"/dashboard/league/report?week="+week+"&league_id="+league_id+"&show_totals="+showTotals} className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-full" >Generate Weekly Report</Link>
                 </div>
               </div>
             }
@@ -44,11 +46,12 @@ export default function Teams(props) {
             <Head title="Teams" />
 
             <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div className="max-w-7xl sm:px-6 lg:px-8">
+                    <div className="flex flex-row bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <TeamList teams={props.league.teams} />
                     </div>
                 </div>
+
             </div>
         </AuthenticatedLayout>
     );

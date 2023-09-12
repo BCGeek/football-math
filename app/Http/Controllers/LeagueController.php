@@ -7,6 +7,7 @@ use App\Models\Stats;
 use App\Models\StatsKickers;
 use App\Models\Team;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class LeagueController extends Controller
@@ -58,7 +59,7 @@ class LeagueController extends Controller
         */
 
         // $league = League::with('teams')->where('id', auth()->user()->league_id)->first();
-        $league = League::with('teams')->where('id', $request->league_id)->first();
+        $league = League::with('teams')->where('id', auth()->user()->league_id)->first();
         // return $league;
 
         // $league = $request->league_id;
@@ -75,6 +76,8 @@ class LeagueController extends Controller
 
             $reports[] = $report;
         }
+
+        // Log::debug($reports);
 
         return Inertia::render('Dashboard/LeagueReport', [
             'reports' => $reports,
@@ -99,10 +102,13 @@ class LeagueController extends Controller
             $p->team = $player->Team;
 
             $p->stats = Stats::where('PlayerID', '=', $player->PlayerID)->where('week', $week)->orderBy('Position', 'ASC')->first();
+
             $p->scores = $this->computeScores($p->stats);
 
             $players[] = $p;
         }
+
+        // Log::debug($players);
 
         return $players;
     }
@@ -121,7 +127,7 @@ class LeagueController extends Controller
             $scores['PassingYards'] = round($player->PassingYards / 50);
             $scores['RushingYards'] = round($player->RushingYards / 20);
             $scores['ReceivingYards'] = round($player->ReceivingYards / 20);
-            $scores['PassingTouchdowns'] = $player->PassingTouchdowns * 6;
+            $scores['PassingTouchdowns'] = $player->PassingTouchdowns * 4;
             $scores['RushingTouchdowns'] = $player->RushingTouchdowns * 6;
             $scores['ReceivingTouchdowns'] = $player->ReceivingTouchdowns * 6;
         }

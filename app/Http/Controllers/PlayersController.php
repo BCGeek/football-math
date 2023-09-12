@@ -10,10 +10,11 @@ class PlayersController extends Controller
 {
     public function index(Request $request)
     {
+        // this should return only available players
         if (isset($request->pos)) {
             $players = Player::where('position', $request->pos)->orderBy('Name', 'ASC')->paginate(400);
         } else {
-            $players = Player::orderBy('Name', 'ASC')->paginate(10);
+            $players = Player::orderBy('Name', 'ASC');
         }
         return Inertia::render('Dashboard/NFL', ['players' => $players]);
     }

@@ -1,0 +1,385 @@
+In ES and NQ futures, we should create a Bull and Bear Score.
+
+A score should consist of several factors such as most recent trend - including recent highs and recent lows - to determine position within the trend channel.
+
+For example, if we are in an up trend, but at or near the last high, then we probably wouldn't want to get in and give a lower score.  Conversely, if we are at a recent low, then the score would be higher.
+
+I think this should be done as a percentage of the trend range.  ie, if the range is 70 ticks, then 10 ticks from the bottom is pretty good.  But if the range is 20 ticks, then 10 ticks from the bottom is less desireable.
+
+I like to trade on the 2000 tick chart for ES AND NQ (although, NQ could be higher?).   
+
+Perhaps would could look for highs and lows based on time and ticks?  ie, Today's range, last 4 hour range, last 1 hour range?
+
+Or, range for the last 60 bars, last 30 bars, and last 10 bars?
+
+How would I programmatically see legs?
+
+I think the goal should be to exit with small losses and let orders run as long as direction has bias?  ie, bull score greater than 60%?  Or, we are nearing end of trading day?
+
+Only enter a trade when score exceeds 80 - 90%?
+
+What about strenght at price?   ie, is there a history of resistance - no resistance at the price zone in which we are heading?
+
+    One way to consider is to look at volume the last times the price was here.  Was it bullish? bearish?  Strong/Weak?  I suggest if there was strengh  then it is likely to be strong again.   
+
+    Another measure is time - was it a slow or fast candle (for the tick charts).  Relative to bars around it?
+
+
+
+===============
+
+2/24/2023
+
+I had a pretty good week.   
+
+My first batch of EA accounts hit their target in three days.   Now, I only need to make minimal trades for four more days and they can be converted to PA accounts.
+
+Unfortunately, when I tried to reset five of my previously blown accounts, I reset one of the accounts that just met the target!  Sucks, but the cost was $40, so I can live with it.  - have to learn to be more patient and careful.
+
+As a result, I reset five more accounts so I'll end up with 10 pa's once they pass the eval.  
+
+Did one trade on the new batch the meet the daily trade requirement.
+
+===============
+2/25/2023
+
+My first trade was to hit the daily requirement for batch 1.   Lost $130 - still above threshold, but I should really pare it down.  Only $80 or so leeway.
+
+I then started on batch 2 - day 2
+
+My first trade was a loss.   Barely hit my stop and went the other way.   Frustrating because I was about to move the stop - something I've got to stop doing!.   It would have won, but that is simply bad trading unless there is a reasonable price point that will provide protection.
+
+I quickly got back to break even.  But then I had a trade where I kept moving the stop because I was convinced it would turn around. (STOP THAT!).   Was down almost $1k, but then it did turn around and become profitable.
+
+The day ended with account up around $1.9k.   Nice, but a hollow victory knowing it got there by risking way too much.
+
+===============
+The plan
+
+I'll hit my trading requirement on Wednesday, Mar 1.   I'll need to pay for 4 PA accounts at $150 each - $600 before the 3rd.
+
+If things go well with batch 2, I'll complete the 7th day on March 3rd.  will need to fund those accounts on the 6th.  6 x $150 = $900.
+
+This means I'm in around $2000 for these batches - ouch.
+
+If things go well,  I'll request my first withdrawal in early April.  Four accounts x $1500 each = $6k and the pain will be over.
+
+==============
+Thoughts
+
+The key to winning is understanding that a $50k PA account does not give you $50 to play with.  There is still a $2500 trailing stop and THAT is your purse.  Once I pass $52,600, the trailing stop ends at $50,100. THEN, I need to build the purse to gain wiggle room.
+
+My plan is to build the accounts to $56k before taking my first payout of $1,500 each account.  This means each account will be reduced to $54,500 - only $4,500 purse.
+
+However, we are now playing with house money.  But that doesn't mean I can be casual about it.   I still need to be very careful as it is really easy to lose it all quickly as I did with my first PA accounts.
+
+If each account makes $100 per day after this point, then that will translate into $2,000 per month of profit per account (20 days) which equals $20,000 per month for the combined ten accounts!
+
+My plan is to withdraw half of my earnings each month.  So, with this minimal daily target, I could withdraw $10 per month - which approximates my current salary!  This also leave $1k in each account.  So, after the second month's withdrawl, the account balances would be $55,500 - more wiggle room.
+
+I believe that this is very possible - in fact, It's probable that I'll easily average $200 per day per account - which would mean $20k/mo salary. ($240k per year).  But, I don't want to get ahead of myself.  
+
+The point is, If I am patient - and don't try to make a million in my first week - I can turn this into something very profitable over the span of a few months.
+
+Realistic goals....
+
+Take first withdrawal beginning of April $10k.  This means each account needs to earn approxiately $5k in 20 trading days. That means I have to average $250 per day.  Although I think this can happen, this exceeds my target.  So, I should shoot for mid April and take 10 more days.  I will increase my target to $56k and take out $1500 each.  That means I need to average $200 per trading day.
+
+Realistically, I can do more - and will take more if great setups show themselves during the day.  Otherwise, my goal is to stop trading at 8am each day and monitor for setups as the morning progesses.
+
+Apex has restrictions for withdrawals for the first three months.  
+
+For your first payout, you must have a total of 10 (ten) separate, individual, trading days, where trades were actual placed on those ten days, according to the PA guidelines,  before you can request the first payout. Each ongoing payout request requires a minimum of 10  (ten) trading days between payout requests, where trades were actually traded on ten individual, separate trading days. The 10 active trading days is from request to request, not based on request approval dates, when the funds were deducted from the trading account, or when payouts were sent or received. 
+
+The first through third payout months have a minimum payout of $1,000, with a minimum account balance threshold after payout. There is also a max amount payout for the first through third payout months. ( Whether you took one payout or two payouts for the month, it is considered one single "payout month" ) See below for maximum payout amounts the first three payout months. 
+
+EACH MONTH YOU TAKE A WITHDRAWAL IS COUNTED AS ONE "WITHDRAWAL MONTH" whether you took one or two withdrawals that month. The maximum limits are in place until after THREE Withdrawal Months are completed, then there is no maximum on the 4th "Withdrawal Month". A withdrawal must be made for it to count as a "withdrawal month"
+
+MAXIMUM: There is a Maximum withdrawal amount on accounts for the first 3 months of withdrawals. You can take out this maximum amount, twice a month, according to schedule above, as long as you have had 10 trading days between requests. Starting the 4th month, (after three previous months of withdrawals) there is no maximum, you can take out as much as you want, as long as the account stays above its minimum required balance (Starting balance plus $100) and there are a minimum of ten trading days between requests. 
+
+You are NOT required to leave the "safety net" amount in the account, unlike most other companies! 
+
+The maximum withdraw each payout period ( twice monthly) amount depends on the account size:
+
+$25k Account- $1500
+$50k Account- $2000 - my acconts here.
+
+There is no maximum payout on the fourth payout month and beyond, so long as the minimum balance threshold is in the account after payout.
+
+Request Dates: 1st-5th    ---  Paid out on the 15th
+                          Approvals may happen any time between the 6th and 14th of the month
+
+Request Dates: 15th -20th--- Paid out on the 30th ( Or last day of the month) 
+                          Approvals may happen any time between the 21st and last day of the month - 1 day
+
+Each account is considered separate, stand alone account. So if you have 10 accounts, you can withdrawal the maximum from EACH account, EACH payout period. For example if you have 10 account, all $50k Accounts, you can withdrawal $2000 from each for a total of $20,000 payout, and you can do this twice a month, for a total of $40,000 payout for the month! You can do this the first 3 months, then on the 4th month, there is not maximum from each account. 
+
+
+===============
+Again, this plan has great potential - as long as I stay within myself.   Allow myself to have bad days - as long as I don't blow up, I've shown I can win a high percentage of my trades and losses will be cleared.
+
+If there is a month where there were no profits, then so be it - don't lose the ability to journey on by getting careless and trade w/o focus.
+
+Pie in the sky?   
+
+I like to trade with two lots on NQ.  This means every tick is worth $10.  I like to risk 31 points to make 19 points.  Ths gives room to breath and time to adjust take profit and stops if needed.  
+
+At this rate, a winning trade would make $190 less commission of $8 (2 lots @$4) = $182.  A losing trade would lose $310 less $8 commission = $318.
+
+Two wins and one loss = $182 + $182 - 318 = $364 - 318 = $46 profit.
+
+The point is, I trade arount 75% win rate.  That means I win three and lose one.
+
+3x $182 = $546 profit.
+1x 318 = $318 loss.
+Average profit per day for 4 trades per day = $228.
+
+If I never increase my lot size, this means I will earn $4560 per month per account.   Until the account grows to $75, I will withdraw half = $2,280 per month. x 10 accounts = $22,800 per month or $273,600 per year.
+
+This brings us to the profit split with Apex.   The first $25k per account is 100% paid out.  After that, Apex takes 10%.
+
+Without getting too detailed, Once hitting $75k per account, I will plan on taking out 100% of the months profit.  That means $4560 per account - but Apex will take 10% which leaves $4104 per account ($494,480 per year!).
+
+=======================
+Is this sustainable?  
+
+Frankly, I know I can remain disciplined knowing the long game is very lucrative.  But I suspect the best approach will be to first cover my expenses and then start funding my own futures account not tied to Apex.  After building that account to $500k (which equals 10 - 50k accounts), then I can remain independent and not pay 10% commission.
+
+How long will that take?   Here's a little chart... (x 10)
+
+Date    Withdrawal  Balance     Cumulative Withdrawal
+4/15    $1,500      $54,500     $1,500
+5/15    $2,000      $56,500     $3,500
+6/15    $2,000      $58,500     $5,500
+7/15    $2,000      $60,500     $7,500
+8/15    $2,000      $62,500     $9,500
+9/15    $2,000      $64,500     $11,500
+10/15   $2,000      $66,500     $13,500
+11/15   $2,000      $68,500     $15,500
+12/15   $2,000      $70,500     $17,500
+2024
+1/15    $2,000      $72,500     $19,500
+2/15    $2,000      $74,500     $21,500
+Now the Apex commission starts 
+3/15    $3,500      $75k flat   $25,000  (rounded down to make math easy)
+
+At this point, I've withdrawn $250k  (25x 10).
+But note, each account at apex now has a $25k balance that is mine.
+So, the value of this plan is now $500k.
+My next withdrawal could be $25k per account and, If I haven't spent previous money, I'd have $500k in my own futures account withouth restrictions...
+
+Of course, this is the perfect scenario.  It relies on consitency and surviving the unknown.  What happend if/when Apex folds?   I know they are pretty solid, but I wonder if they can survive?  At least, that should be a concern.  That is why I think covering my costs should be the primary goal.   After that, each month should start with considering the risks and act on them.  But, because costs were covered, there is no real risk.
+
+Frankly, I should max out each account at $60k leaving a risk of $10 per account.  I think a $10k buffer is sufficient for 2 lot trading on NQ.
+
+That chart would look like this:
+Date    Withdrawal  Balance     Cumulative Withdrawal
+4/15    $1,500      $54,500     $1,500
+5/15    $2,000      $56,500     $3,500
+6/15    $2,000      $58,500     $5,500
+7/15    $2,000      $60,500     $7,500
+8/15    $4,000      $60,500     $11,500
+9/15    $4,000      $60,500     $15,500
+10/15   $4,000      $60,500     $19,500
+11/15   $4,000      $60,500     $23,500
+12/15   $4,000      $60,500     $27,500
+    Here, we've reached $250k - we could/should be trading this in a private futures account and THAT should be making money.  But, I want to fund that account with $500k, so I'll stay with Apex, for now.
+1/15    $3,500      $60,500     $31,000 - Apex commission starts
+2/15    $3,500      $60,500     $34,500
+3/15    $3,500      $60,500     $38,000
+4/15    $3,500      $60,500     $41,500
+5/15    $3,500      $60,500     $45,000
+    At this point, we've withrawn $450k - and the account balances at Apex are worth $100k - exceding the target of $500k to $550k in my futures account.
+
+
+The alternative to keeping a low balance is to increase lot size and earn more quicker.  
+Let's say after $60k, I increase my lot size to 3.  My average results would look like this...
+
+Wins:
+    3 lots x 19 x 10 = $570 - $12(comm) = $458
+Losses:
+    3 lots x 31 x 10 = $930 - $12 = $942
+
+3 wins, 1 loss = $1,362 - $942 = $420 profit per day
+
+$420 x 20 = $8,400 / mo x 10 = $84,000 / month!
+
+    
+
+
+=====================================
+3/13/2023 
+
+Well, after a total collapse, I decided to take a break.   If I cannot master handling a loss, then I have no business trading - period.
+
+So, that's the problem I need to solve...
+
+I've long considered developing a tool to rate bull vs. bear ratings.  The idea is to use it as an exit signal no matter existing stop losses or take profits.   If I can develop a good plan, this should keep me out of deep losses.   
+
+Admitting that it could also take away profits because a signal entered early - that is more preferable to holding onto a losing trade with the hope of a reversal.
+
+I honestly do not have a good idea on how to make this indicator.  But I do know I want a bullish "score" and a bearish "score".   Entry, as well as exits, would be based on the difference between the two.
+
+Let's say each has a rating of one to ten.  Simply subtract the bearish score from the bullish score.  If the number is positive, then we are bullish - if we are negative, then bearish.   Entries should be based on a abs(score) > 5.  For example, if the bullish score is 8 and a bearish score is 3, then the abs would be 5 and I would enter long.  Conversely, if the bearish score were 7 and the bullish score were 2 then abs(2-7) = 5 and I would enter short.
+
+Exists should be based on an abs score of 2 in the same direction of the order.
+
+For instance, if I am currently bullish, and the abs score drops below two then I should exit.  
+6 Bullish - 4 bearish = 6-4 = 2
+
+I think we could go as low as 0... (neutral)
+
+I am not sure of in candle or at close of candle... have to think about it.
+
+
+----------------------------------
+Now, on to what makes the score....
+
+I struggle with waiting for a signal.  ie, we are in a nice up trend - I think it's going to continue - but, unless there's a pullback - I need to wait - losing out on great potential.
+
+I think this rating system will allow me to enter regardless of weather there's a pullback.  I like that....
+
+Factors to consider...
+
+Trend:
+    If I am trading on a 2000 tick chart, how do I mathematically determine trend?   Also, how do I create channels - or should I use SD?  
+
+    A popular way to enter is to wait until the price action touches a channel and expect a reversal in the direction of the current trend.  Of course, this works when the trend is honored - which should be > 50% of the time - so this should be considered.
+
+    EMA is also good for this.  Up trend - touch ema - good bull score, etc.
+
+Volume:
+    EMA of volume should be good, as well.   Looking for delta volume - weakening trend - could be a component of score.
+
+Levels:
+    Find a way to determine recent s/r levels - if we're approaching one - possible reduce that score.
+
+In bar computation:
+    the score should be calculated every tic.
+
+Targets:
+    if my target is 8 ticks and there's a level in the way, then the score should be reduced.
+    if the s/l has a level in the way, the score should be increased.  if there in not a level in the way then the score should not be altered.
+
+Flow
+
+    Tick - compute - in trade? - enter? - exit?
+
+Automation:
+    Funded accounts are not allowed to automate trade entries.   But I think it is legal to automate stop losses - exits.  So I would create an indicator that visually shows entries and then wait for exits.
+
+One of the best parts of this strategy is a market moving in the right direction should not exit prematurely - allowing for larger gains.
+
+========================================
+4/10/2023
+
+So many times I've held onto a trade hoping for it to turn around.   It approaches my stop loss and I think to myself it must turn around!  So I move it a few points.  It approaches again and again I move the stop.   I finally accept my fate and take the loss only to have the price change right there.
+
+Very frustrating!
+
+It occurs to me a stop loss, when set, it based on a prediction that, if the price were to hit that point, then the trade was probably wrong.
+
+I think that thinking is flawed.
+
+We have more information as the price nears the stop.  Why should we ignore that information?
+
+I think exiting a position should be done in real time - not based on a prediction.   In other words, if I think the trade has turned against me then I should exit - regardless of my stop.   This could be when in profit or not.
+
+The opposite is true for taking a profit.   How many times have I come close to my target only to see it turn around and create a loss.
+
+Of course, the down side to this is exiting a trade too early.  And that is valid - but it could also be used to increase profits.   ie, don't exit until you feel the trade has turned - keeping you in the trade longer.
+
+I am not saying do not set take profit and stop loss targets.  They are really necessary in very fast moving markets.   Nothing nicer than a trade paying off in seconds!
+
+==========================================
+Another frustration is waiting for the perfect reversal setup - as a trend continues w/o the ability to enter.   I know, a strategy based on reversals is strongest at the start of the reversal - but causes terrible fomo!  A trade should be entered when analysis suggests the next candle will be in the desired direction - regardless of where we are in a trend.
+
+============================================
+I want to create a bot that enters a trade when a score exceeds ABS(75)%.   I want the bot to exit that trade when the score goes below ABS(50)%.
+
+It doesn't matter what goes into the score at this point.   I want to use it for trade entries and exits.
+
+The result of this system would be a trade would stay open as long as the score remained above +-50.   
+
+Another rule is a stop would trail to break even (plus one) once the trade has moved one ATR.  And should always trail by 2 ATRs after that.  This will account for sudden reversals.
+
+I think initial stops should be set at 2 ATRs with take profit at 3 ATRs.   Again, with the idea that a sudden move could wipe us out.  
+
+I think the ATRs should have a max size of 2 points (8 ticks).  That means, the max risk would be 16 ticks or $160.  (plus commission of $8 when trading 2 lots).
+
+I think this would work well on 500 tick NQ charts because they are rather robust.   
+
+If the original entry is strong, then this should be a great system.   The trailing stop protects us, and the exit on score ensures max profit.
+
+============================================
+How to create a score?
+
+Realistically, it should consider proximity to supply and demand zones along with trend.  ie, why would I buy when I'm close to a supply zone?   So a component of the score should be this.   
+
+*****  This IS a scalping system - so even 5 points should be desirable.  *****
+
+Of course, trend should also be considered....
+
+On a scale of 1 to 10, are we close to the last reversal - ie room to grow?
+Are we overbought/oversold?
+ie - rate the position in the current trend.
+
+Is there any news on the horizon?   Score should be zero!
+
+Where are we in relation to ema's?
+
+Bollinger?  (SD).   - the higher the deviation the lower the score.
+
+Anyway, let's say we have 10 conditions scored.   I could create an indicator that flashes green or red when there's a signal to enter. (according the rules of Apex, I cannot use the bot to make the entry.)   Once entered, though, I think it is legal for my bot to move my trailing stop - which could mean exit with at stop of 0 when the score falls below 50.
+
+I think there are some components of the score that are more important than others.  So the score should be weighted.  ie, nearing a recent point of consolidation should be stronger than above 21 ema.
+
+
+I think the plan is solid and needs to be built.   I do have the tools to do it so I will.
+
+I first need to do some candle analysis.   One component could be last three candles predictor.   Up Up Up - Larger - Smaller - Smaller, etc.   I could analyze many different patterns based on price and look for prediction for NEXT candle.
+
+========================================
+4/21/2023 
+
+OK, for the second time, I have passed my eval account - with four accounts.  The seventh day will be on Tuesday and my PA account should be set up starting Wednesday April 26.
+
+On my first try, I had immediate success and started trading like I was invinceable. I got each account up to about $5k and thought this was too easy.   On trade later - with a sliding stop, all accounts were lost.  BLAH!
+
+This time, I only have four accounts.   Yes, I want a payout as soon as possible, but the most important factor is understanding that this is a long term project.   I must first build equity before I can withdraw anything.  Therefore, on my 50k PA accounts, I will not withdraw my first penny until I've reached $56k - an then, I will withdraw $1k per account for a total of $4k.
+
+This means I must make $6k in each account before I can reap the profits.   At $150 per day I will need 40 days to complete the task.   My cocky inner self thinks I can easily make $600 per day and do it in 10 days!  THAT's where I get into trouble.  Yes, I should take ONLY great setups - even before reaching my daily goal - but espcially after.  If they're there - then great.  Otherwise, have confidence that the long term goal is more important than quickly reaching my target.
+
+Here's the benefit of having a base of $56k.
+
+In the next 10 trading days, I only have to average $100 per day per account to take out the next $1k!   That means every ten days - or twice per month - I can take out at least $1k.  Times four accounts, thats $8k per month.  (2x4x1k) = $96k per year.
+
+The bottom line is the focus should be on getting to $56k.   After that, it gets much easier.  So, take your time and get there!
+
+My plan, should I have a pay period where the balance is greater than $56k, is to take half more.  ie, if the balance is $57k, then I would withdraw $1k plus $500 - leaving a balance of $55,500.
+
+The next pay period, I may have $58k.  Then I would withdraw $2k ($1k plus $2000/2) leaving a balance of $56k.
+
+This way, the balance can grow - while making more money and keeping a healthy safety net.
+
+On the opposite side, If my balance is less than $56 at the end of a pay period, then I would not make a withdrawal - because staying in the game is the most important part!
+
+Of course, this ignores the fact that Apex will take 10% after the first $25k has been paid out.  But, by then, I would think the account size would be large enough to consider it a cost of business....
+
+=============================================
+4/23/2023
+
+I really do need to develop an indicator.  
+
+I think the time length of a 2k tick bar can have significanc.
+
+Let' say the average 2k bar lasts 60 seconds.   If a bar forms in six seconds, then it is probable that the direction of that bar represents solid buyers or sellers.   Now, I'm not sure we can use this on the NEXT bar, but it can be helpful in noting a price level in the near future.
+
+In addition, incorporating different timeframes may have value.
+
+I think developing an ATR of Bar TIME could help visualize rate of change.
+
+Perhaps 6 9 and 12 ATR.   
+
+I still need to diagnose what that means going forward, but I do think it has significance.
+

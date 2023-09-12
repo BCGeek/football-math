@@ -21,9 +21,7 @@ export default function Teams(props) {
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{props.league.name}: Teams</h2>}
         >
             <Head title="Teams" />
-                          <a className="inline-flex px-5 py-3 text-white
-                bg-purple-600 hover:bg-purple-700 focus:bg-purple-700
-                rounded-md ml-6 mb-3" onClick={()=>setPage('add')}>Add Team</a>
+                          
 
 
             <div className="py-12">

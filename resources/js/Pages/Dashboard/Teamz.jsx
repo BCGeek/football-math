@@ -10,7 +10,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import PlayerList from '@/Components/PlayerList';
 import { Inertia } from '@inertiajs/inertia';
 
-export default function TeamSAVE(props) {
+export default function Team(props) {
     console.log('props', props);
     const positions = ['Quarterbacks','Running Backs', 'Wide Receivers', 'Tight Ends', 'Kickers'];
     const qbs = props.team.players.filter(player => player.position === 'QB');
@@ -53,8 +53,15 @@ export default function TeamSAVE(props) {
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">{props.team.league.name}: {props.team.name}</h2>}
+            header={
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                    <h2 className="font-semibold text-xl text-gray-800 leading-tight">{props.team.league.name}</h2>
+                    <button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-full mt-4" >{props.team.name}</button>
+                </div>
+
+            }
         >
+
             <Head title="Team" />
 
             <div className="py-12">
@@ -63,37 +70,6 @@ export default function TeamSAVE(props) {
                         <h2 className="text-xl font-bold">Players</h2>
                         <div className="flex flex-1">
                             <PlayerList players={props.team.players} kickers={props.team.kickers} nfl_teams={props.team.nfl_teams}/>
-                            <div className="flex-1 ml-10">
-                                Players
-                                <input id="filter" type="text" value={playerFilter} onChange={(e)=>setPlayerFilter(e.target.value)} />
-                                <select onChange={selectPlayer}>
-                                    <option value="">Select Player</option>
-                                    {
-                                        filteredPlayers.map(player =>
-                                            (<option key={player.PlayerID} value={player.PlayerID} >{player.Name}</option>)
-                                        )
-                                    }
-                                </select>
-                            </div>
-                            <div className="flex-1 ml-10">
-
-                                <form onSubmit={submit}>
-                                    <InputLabel forInput="week" value="Get stats for week" />
-
-                                    <TextInput
-                                        type="text"
-                                        name="week"
-                                        value={week}
-                                        className="mt-1"
-                                        isFocused={true}
-                                        handleChange = {handleChange}
-                                    />
-
-                                    <PrimaryButton className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4" processing={processing}>
-                                        Get Stats
-                                    </PrimaryButton>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>

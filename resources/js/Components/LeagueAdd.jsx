@@ -42,9 +42,6 @@ const LeagueAdd = ({showPage}) => {
                     />
 
 
-                    <PrimaryButton className="ml-4" processing={processing}>
-                       Add Team
-                    </PrimaryButton>
                 </div>
             </form>
             </div>

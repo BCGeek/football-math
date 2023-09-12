@@ -6,6 +6,8 @@ import TextInput from './TextInput'
 
 const TeamAdd = ({showPage, league}) => {
 
+  console.log('league', league)
+
   const [name, setName] = useState('');
   const [processing, setProcessing] = useState(false);
   const [values,setValues] = useState({name:'',league_id: league.id})
@@ -14,7 +16,7 @@ const TeamAdd = ({showPage, league}) => {
 
   const submit = (e) => {
     e.preventDefault();
-    Inertia.post('/dashboard/teams', values);
+    Inertia.post('/dashboard/team', values);
     showPage({page: 'list', league_id: values.league_id, league: league});
   }
 
