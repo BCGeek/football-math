@@ -82,8 +82,46 @@ class TeamsController extends Controller
         return $kickers;
     }
 
-    public function store(Request $request)
+    public function manage(Request $request)
     {
+        switch ($request->action) {
+            case "addPlayer":
+                $team = addPlayer($request);
+                return Inertia::render('Dashboard/Team', ['team' => $team]);
+                break;
+            case "removePlayer": 
+                $team = removePlayer($request);
+                break;
+            default:
+                log::info('invalid manage action', [$request]);
+        }
+    }
+
+    public function update(Request $request)
+    {
+        $changes = $request->all();
+        log::info('Update Team Request', [$changes]);
+        foreach ($changes as $value) {
+            log::info("Change",  $value);
+            foreach ($value as $val) {
+                log::info($val);
+            switch ($val['action']) {
+                case "add":
+                    $this->store((object)$val);
+                    break;
+                case "remove":
+                    $this->destroy((object)$val);
+                    break;
+                default:
+                    // return error
+            }
+        }
+        }
+    }
+
+    public function store($request)
+    {
+        log::info('Add Request', [$request]);
         $team = Team::with('league')
             ->with('players')
             ->with('kickers')
@@ -94,9 +132,28 @@ class TeamsController extends Controller
         // $players = [];
         // $players['qb'] = Player::where('position', 'qb')->get();
 
+        $team->players()->detach($request->player_id);
         $team->players()->attach($request->player_id);
-
+        // return $team;
         // return Inertia::render('Dashboard/Team', ['team' => $team]);
+    }
+
+    public function destroy($request)
+    {
+        log::info('Destroy Request', [$request]);
+        $team = Team::with('league')
+            ->with('players')
+            ->with('kickers')
+            ->with('nfl_teams')
+
+            ->where('id', $request->team_id)->first();
+
+        // $players = [];
+        // $players['qb'] = Player::where('position', 'qb')->get();
+
+        $team->players()->detach($request->player_id);
+        // $team->players()->attach($request->player_id);        
+        // return $team;
     }
 
     public function store2(Request $request)

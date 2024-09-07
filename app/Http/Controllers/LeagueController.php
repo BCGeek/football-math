@@ -28,6 +28,17 @@ class LeagueController extends Controller
         ]);
     }
 
+    public function leagues()
+    {
+        if (auth()->user()->id === 1) {
+            $leagues = League::with('teams')->where('year', '2024')->get(); //->where('id', auth()->user()->league_id)->first();
+            return Inertia::render('Dashboard/Leagues',[
+                'leagues' => $leagues,
+                'action' => 'list'
+            ]);
+        }
+    }
+
     public function show()
     {
 
