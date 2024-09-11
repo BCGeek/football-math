@@ -38,6 +38,7 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     Route::get('league/report', [LeagueController::class, 'generateWeeklyReports']);
     Route::get('leagues', [LeagueController::class, 'leagues']);
 
+    Route::get('league/{league_id}', [LeagueController::class, 'show'])->name('dashboard.league');
     Route::resource('league', LeagueController::class);
 
     Route::post('team/add', [TeamsController::class, 'store']);

@@ -30,19 +30,31 @@ export default function Authenticated({ auth, header, children }) {
                                 </NavLink>
                                 <NavLink
                                     href="/dashboard/league"
-                                    active={route().current("dashboard.league")}
+                                    active={route().current(
+                                        "/dashboard/league"
+                                    )}
                                 >
                                     League
                                 </NavLink>
-                                <NavLink
-                                    href={route("dashboard.nfl")}
-                                    active={route().current("dashboard.nfl")}
+                                {auth.user.id === 1 && (
+                                    <NavLink
+                                        href="/dashboard/leagues"
+                                        active={route().current(
+                                            "/dashboard/leagues"
+                                        )}
+                                    >
+                                        Leagues
+                                    </NavLink>
+                                )}
+                                {/* <NavLink
+                                    href={route("/dashboard/nfl")}
+                                    active={route().current("/dashboard/nfl")}
                                 >
                                     NFL
-                                </NavLink>
+                                </NavLink> */}
                                 {/* <NavLink
-                                    href={route("dashboard.admin")}
-                                    active={route().current("dashboard.admin")}
+                                    href={route("/dashboard/admin")}
+                                    active={route().current("/dashboard/admin")}
                                 >
                                     Admin
                                 </NavLink> */}
