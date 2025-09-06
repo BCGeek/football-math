@@ -6,11 +6,12 @@ import TeamList from "@/Components/TeamList";
 
 export default function Teams(props) {
     console.log("props", props);
+
     const [page, setPage] = useState("");
     const [week, setWeek] = useState(1);
     const [showTotals, setShowTotals] = useState(false);
 
-    const league_id = props.league_id ? props.league_id : 1;
+    const league_id = props.league.id ? props.league_id : 1;
 
     const handleWeekChange = (e) => {
         setWeek(e.target.value);
@@ -95,6 +96,14 @@ export default function Teams(props) {
                 <div className="max-w-7xl sm:px-6 lg:px-8">
                     <div className="flex flex-row bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <TeamList teams={props.league.teams} />
+                    </div>
+                </div>
+            </div>
+
+            <div className="py-12">
+                <div className="max-w-7xl sm:px-6 lg:px-8">
+                    <div className="flex flex-row bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <TeamAdd showPage={setPage} league={props.league} />
                     </div>
                 </div>
             </div>

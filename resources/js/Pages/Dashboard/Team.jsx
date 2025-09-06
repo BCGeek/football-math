@@ -33,6 +33,8 @@ export default function Team(props) {
     const [changes, setChanges] = useState(false);
     const [updates, setUpdates] = useState([]);
     const [activePlayers, setActivePlayers] = useState(props.team.players);
+    const [teamName, setTeamName] = useState(props.team.name);
+    const [teamNameChange, setTeamNameChange] = useState(0);
 
     const [qbs, setQbs] = useState([]);
     const [rbs, setRbs] = useState([]);
@@ -40,6 +42,9 @@ export default function Team(props) {
     const [tes, setTes] = useState([]);
     const [ks, setKs] = useState([]);
     const [nflteam, setNflteam] = useState([]);
+
+    const filterClass =
+        "py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none";
 
     const loadTeamPlayers = () => {
         setQbs(activePlayers.filter((player) => player.position === "QB"));
@@ -59,18 +64,6 @@ export default function Team(props) {
         // console.log("useEffect for active players", allPlayers, activePlayers);
         loadTeamPlayers();
     }, [activePlayers]);
-
-    useEffect(() => {
-        setFilteredPlayers(
-            filteredPlayers.filter((player) => {
-                return (
-                    player.Name.toLowerCase().includes(
-                        playerFilter.toLowerCase()
-                    ) || playerFilter === ""
-                );
-            })
-        );
-    }, [playerFilter]);
 
     useEffect(() => {
         console.log("updates ", updates);
@@ -126,13 +119,61 @@ export default function Team(props) {
     };
 
     const saveChanges = () => {
+        console.log("Team Name Change?", props.team.name, teamName);
         console.log("saveChanges", updates);
-        Inertia.post("/dashboard/team/update", [updates]);
+
+        Inertia.post("/dashboard/team/update", [
+            updates,
+            teamNameChange,
+            teamName,
+            props.team.id,
+        ]);
         window.open("/dashboard/league", "_self");
+    };
+
+    const updateTeamName = (e) => {
+        setTeamName(e.target.value);
+        setTeamNameChange(1);
+        setChanges(true);
     };
 
     useEffect(() => {
         console.log("position filter", positionFilter, allPlayers);
+        filterPlayers();
+    }, [positionFilter]);
+
+    useEffect(() => {
+        // backspace does not go backwards, so we need to see if the position filter is in place and
+        // start from there...
+        // we need to reset the position filter to include all for that position and then
+        // re filter based on the player filter....
+        //
+        // ONLY if the key down is a backspace...
+
+        setFilteredPlayers(
+            filteredPlayers.filter((player) => {
+                return (
+                    player.Name.toLowerCase().includes(
+                        playerFilter.toLowerCase()
+                    ) || playerFilter === ""
+                );
+            })
+        );
+    }, [playerFilter]);
+
+    useEffect(() => {
+        console.log("Filtered Players", positionFilter, filteredPlayers);
+    }, [filteredPlayers]);
+
+    const clearFilter = () => {
+        console.log("Clear Filter");
+        // we need to set the filtered list to the selected position
+        // clear the filter.
+
+        filterPlayers();
+    };
+
+    const filterPlayers = () => {
         setPlayerFilter("");
         setFilteredPlayers(
             positionFilter === "All"
@@ -141,11 +182,7 @@ export default function Team(props) {
                       return player.Position === positionFilter;
                   })
         );
-    }, [positionFilter]);
-
-    useEffect(() => {
-        console.log("Filtered Players", positionFilter, filteredPlayers);
-    }, [filteredPlayers]);
+    };
 
     return (
         <AuthenticatedLayout
@@ -163,7 +200,16 @@ export default function Team(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg px-5 py-5 w-full">
                         <h2 className="text-xl font-bold text-purple-800">
-                            Team: {props.team.name}
+                            Team:{" "}
+                            <input
+                                type="text"
+                                name="teamName"
+                                value={teamName}
+                                onChange={updateTeamName}
+                            />
+                            <p className="text-sm ml-12">
+                                You may change team name above.
+                            </p>
                         </h2>
                         <div className="flex ">
                             <PlayerList
@@ -176,7 +222,7 @@ export default function Team(props) {
                                     <p className=" font-bold">Players </p>
                                     <button
                                         className="cursor-pointer font-bold mx-4 text-red-500"
-                                        onClick={(e) => setPlayerFilter("")}
+                                        onClick={clearFilter}
                                     >
                                         clear filter
                                     </button>
@@ -185,7 +231,7 @@ export default function Team(props) {
                                     <div className="inline-flex rounded-lg shadow-sm">
                                         <button
                                             type="button"
-                                            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                                            className={filterClass}
                                             onClick={(e) =>
                                                 setPositionFilter("QB")
                                             }
@@ -194,7 +240,7 @@ export default function Team(props) {
                                         </button>
                                         <button
                                             type="button"
-                                            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                                            className={filterClass}
                                             onClick={(e) =>
                                                 setPositionFilter("RB")
                                             }
@@ -203,7 +249,7 @@ export default function Team(props) {
                                         </button>
                                         <button
                                             type="button"
-                                            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                                            className={filterClass}
                                             onClick={(e) =>
                                                 setPositionFilter("WR")
                                             }
@@ -212,7 +258,7 @@ export default function Team(props) {
                                         </button>
                                         <button
                                             type="button"
-                                            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                                            className={filterClass}
                                             onClick={(e) =>
                                                 setPositionFilter("TE")
                                             }
@@ -221,7 +267,7 @@ export default function Team(props) {
                                         </button>
                                         {/* <button
                                             type="button"
-                                            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                                            className = {filterClass}
                                             onClick={(e) =>
                                                 setPositionFilter("DST")
                                             }
@@ -230,7 +276,7 @@ export default function Team(props) {
                                         </button> */}
                                         <button
                                             type="button"
-                                            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                                            className={filterClass}
                                             onClick={(e) =>
                                                 setPositionFilter("K")
                                             }
@@ -239,7 +285,7 @@ export default function Team(props) {
                                         </button>
                                         <button
                                             type="button"
-                                            className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium focus:z-10 border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                                            className={filterClass}
                                             onClick={(e) =>
                                                 setPositionFilter("All")
                                             }

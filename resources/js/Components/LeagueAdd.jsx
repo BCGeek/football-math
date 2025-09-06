@@ -7,16 +7,16 @@ import TextInput from "./TextInput";
 const LeagueAdd = ({ showPage }) => {
     const [name, setName] = useState("");
     const [school, setSchool] = useState("MoundsView");
-    const [year, setYear] = useState("2024");
+    const [year, setYear] = useState("2025");
 
     const [processing, setProcessing] = useState(false);
 
     const [values, setValues] = useState([]);
 
     const submit = (e) => {
-        console.log("submit");
         e.preventDefault();
-        Inertia.post("/dashboard/league", values);
+        const data = new FormData(e.target);
+        Inertia.post("/dashboard/league", data);
         showPage("list");
     };
 
@@ -36,6 +36,7 @@ const LeagueAdd = ({ showPage }) => {
     };
     const updateYear = (e) => {
         setYear(e.target.value);
+
         setValues((values) => ({
             ...values,
             year: e.target.value,
@@ -45,7 +46,7 @@ const LeagueAdd = ({ showPage }) => {
     return (
         <div className="py-8">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div className="bg-white p-3 overflow-hidden shadow-sm sm:rounded-lg">
                     <form onSubmit={submit}>
                         <div>
                             <InputLabel forInput="name" value="Name" />
@@ -59,7 +60,7 @@ const LeagueAdd = ({ showPage }) => {
                                 handleChange={updateName}
                             />
 
-                            <InputLabel forInput="school" />
+                            <InputLabel forInput="school" value="School" />
                             <TextInput
                                 type="text"
                                 name="school"
@@ -69,7 +70,7 @@ const LeagueAdd = ({ showPage }) => {
                                 handleChange={updateSchool}
                             />
 
-                            <InputLabel forInput="year" />
+                            <InputLabel forInput="year" value="year" />
                             <TextInput
                                 type="text"
                                 name="year"
@@ -78,7 +79,13 @@ const LeagueAdd = ({ showPage }) => {
                                 isFocused={true}
                                 handleChange={updateYear}
                             />
-                            <input type="submit" value="Add" />
+                            <input
+                                type="submit"
+                                value="Add New League"
+                                className="inline-flex mt-3 ml-0 px-5 py-3 text-white
+                                bg-purple-600 hover:bg-purple-700 focus:bg-purple-700
+                                rounded-md"
+                            />
                         </div>
                     </form>
                 </div>

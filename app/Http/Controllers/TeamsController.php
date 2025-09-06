@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Models\Team;
+use Illuminate\Support\Facades\DB;
 
 class TeamsController extends Controller
 {
@@ -101,23 +102,34 @@ class TeamsController extends Controller
     {
         $changes = $request->all();
         log::info('Update Team Request', [$changes]);
-        foreach ($changes as $value) {
+
+
+        foreach ($changes[0] as $value) {
             log::info("Change",  $value);
             foreach ($value as $val) {
                 log::info($val);
-            switch ($val['action']) {
-                case "add":
-                    $this->store((object)$val);
-                    break;
-                case "remove":
-                    $this->destroy((object)$val);
-                    break;
-                default:
-                    // return error
+                switch ($val) {
+                    case "add":
+                        $this->store((object)$value);
+                        break;
+                    case "remove":
+                        $this->destroy((object)$value);
+                        break;
+                    default:
+                        // return error
+                }
             }
         }
+
+        // now, if the team name changed...
+        if ($changes[1]===1) {
+            $team = DB::table('teams')
+                ->where ('id', $changes[3])
+                ->update(['name' => $changes[2]]);                
         }
+
     }
+
 
     public function store($request)
     {

@@ -9,11 +9,15 @@ use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+  use Illuminate\Support\Facades\Hash;
+  use Illuminate\Support\Facades\Route;
+  use Illuminate\Support\Facades\Redirect;
 
 class LeagueController extends Controller
 {
     public function index(Request $request)
     {
+        
         if ($request->has('lid')) {
             if (auth()->user()->id === 1) {
                 $league = League::with('teams')->where('id', $request->lid)->first();
@@ -30,8 +34,8 @@ class LeagueController extends Controller
 
     public function leagues()
     {
-        if (auth()->user()->id === 1) {
-            $leagues = League::with('teams')->where('year', '2024')->get(); //->where('id', auth()->user()->league_id)->first();
+       if (auth()->user()->id === 1) {
+            $leagues = League::with('teams')->where('year', '2025')->get(); //->where('id', auth()->user()->league_id)->first();
             return Inertia::render('Dashboard/Leagues',[
                 'leagues' => $leagues,
                 'action' => 'list'
@@ -39,10 +43,9 @@ class LeagueController extends Controller
         }
     }
 
-    public function show()
+    public function show($league_id)
     {
-
-        $league = League::with('teams')->where('id', auth()->user()->league_id)->first();
+        $league = League::with('teams')->where('id', $league_id)->first();
 
         return Inertia::render('Dashboard/League', [
             'action' => 'list',
@@ -53,13 +56,30 @@ class LeagueController extends Controller
 
     public function store(Request $request)
     {
+        Log::debug($request->all());
+
         $validated = $request->validate(([
             'name' => 'required|unique:leagues|min:3',
         ]));
 
-        League::create($validated);
 
-        return Inertia::render('Dashboard/Leagues', ['leagues' => League::all(), 'action' => 'list']);
+        League::create($request->all());
+
+        return Inertia::render('Dashboard/Leagues', ['leagues' => League::with('teams')->where('year', '2025')->get(), 'action' => 'list']);
+    }
+
+    public function addTeam(Request $request)
+    {
+        Log::debug($request->all());
+
+        $validated = $request->validate(([
+            'name' => 'required|min:3',
+            'league_id' => 'required'
+        ]));
+
+        Team::create($validated);
+        return back();
+
     }
 
     public function generateWeeklyReports(Request $request)

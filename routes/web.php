@@ -36,10 +36,14 @@ Route::middleware(['auth', 'verified'])->prefix('dashboard')->group(function () 
     })->name('dashboard');
 
     Route::get('league/report', [LeagueController::class, 'generateWeeklyReports']);
+    Route::post('league/addteam', [LeagueController::class, 'addTeam']);
+    // Route::get('league/{league_id}', [LeagueController::class, 'show'])->name('dashboard.league');
+
+    Route::resource('league', LeagueController::class);
+
     Route::get('leagues', [LeagueController::class, 'leagues']);
 
-    Route::get('league/{league_id}', [LeagueController::class, 'show'])->name('dashboard.league');
-    Route::resource('league', LeagueController::class);
+
 
     Route::post('team/add', [TeamsController::class, 'store']);
     Route::post('team/delete', [TeamsController::class, 'destroy']);

@@ -9,7 +9,7 @@ class League extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'school', 'year'];
     protected $hidden = ['created_at', 'updated_at'];
 
     public function teams()

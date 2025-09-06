@@ -13,6 +13,7 @@ export default function Leagues(props) {
     }, []);
 
     console.log("leagues props", props);
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -26,14 +27,16 @@ export default function Leagues(props) {
             <Head title="Leagues" />
             {page === "list" && <LeagueList leagues={props.leagues} />}
             {page === "add" && <LeagueAdd showPage={setPage} />}
-            <a
-                className="inline-flex px-5 py-3 text-white
-                bg-purple-600 hover:bg-purple-700 focus:bg-purple-700
-                rounded-md ml-6 mb-3"
-                onClick={() => setPage("add")}
-            >
-                Add League
-            </a>
+            {page === "list" && (
+                <a
+                    className="inline-flex px-5 py-3 text-white
+                    bg-purple-600 hover:bg-purple-700 focus:bg-purple-700
+                    rounded-md ml-6 mb-3"
+                    onClick={() => setPage("add")}
+                >
+                    Add League
+                </a>
+            )}
         </AuthenticatedLayout>
     );
 }
